@@ -1,0 +1,36 @@
+name: Build & Push Stillwater image to GHCR
+
+# Manual trigger only (phased deployment: server deploy is verified first).
+# After merge to main, run this from Actions → "Run workflow" to publish
+# ghcr.io/rkweekley/stillwater-meadows:latest for server pulls.
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Image tag (default: latest)"
+        required: false
+        default: latest
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: ghcr.io/rkweekley/stillwater-meadows:${{ inputs.tag }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

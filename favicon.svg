@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#20382c"/>
+  <!-- mountain peaks -->
+  <path d="M10 44 L24 20 L33 34 L40 26 L54 44 Z" fill="#b98a3e"/>
+  <!-- stream -->
+  <path d="M14 51 Q22 46 32 51 T50 51" stroke="#d3b078" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- sun -->
+  <circle cx="46" cy="17" r="5" fill="#faf6ed"/>
+</svg>

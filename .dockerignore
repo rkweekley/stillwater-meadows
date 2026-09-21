@@ -1,0 +1,10 @@
+.git
+.gitignore
+README.md
+*.md
+research/
+stillwater-research/
+deploy-pkg/
+node_modules
+.DS_Store
+*.log
