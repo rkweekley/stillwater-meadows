@@ -279,12 +279,14 @@ h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 600; }
 .band::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(180deg, rgba(14,29,21,.85) 0%, rgba(14,29,21,.66) 45%, rgba(14,29,21,.78) 100%);
+    linear-gradient(180deg, rgba(14,29,21,.9) 0%, rgba(14,29,21,.74) 45%, rgba(14,29,21,.86) 100%),
+    linear-gradient(90deg, rgba(14,29,21,.55) 0%, rgba(14,29,21,.18) 55%, rgba(14,29,21,.38) 100%);
 }
-.band h2 { color: var(--white); text-shadow: 0 2px 6px rgba(14,29,21,.45); }
-.band .lede { color: rgba(255,255,255,.97); max-width: 56ch; margin-top: 1rem; text-shadow: 0 1px 4px rgba(14,29,21,.9), 0 0 14px rgba(14,29,21,.5); }
-.band .eyebrow { color: var(--gold-soft); text-shadow: 0 1px 3px rgba(14,29,21,.6); }
-.band .btn-ghost { text-shadow: none; }
+.band h2 { color: var(--white); text-shadow: 0 2px 8px rgba(14,29,21,.65), 0 0 18px rgba(14,29,21,.35); }
+.band .lede { color: rgba(255,255,255,.98); max-width: 56ch; margin-top: 1rem; font-size: 1.1rem; text-shadow: 0 1px 5px rgba(14,29,21,.95), 0 0 16px rgba(14,29,21,.6); }
+.band .eyebrow { color: var(--gold-soft); text-shadow: 0 1px 4px rgba(14,29,21,.85), 0 0 10px rgba(14,29,21,.5); }
+.band .btn-ghost { background: rgba(14,29,21,.45); border-color: rgba(250,246,237,.85); }
+.band .btn-ghost:hover { background: var(--cream); color: var(--pine-deep); }
 
 /* ---------- Gallery strip ---------- */
 .gallery-strip {
