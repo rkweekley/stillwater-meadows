@@ -108,8 +108,8 @@ h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 600; }
   transition: background .25s, color .25s, border-color .25s, transform .2s;
   cursor: pointer;
 }
-.btn-gold { background: var(--gold); color: #fffdf7; }
-.btn-gold:hover { background: transparent; color: var(--gold); transform: translateY(-2px); }
+.btn-gold { background: var(--gold); color: var(--pine-ink); }
+.btn-gold:hover { background: var(--pine-deep); color: var(--cream); transform: translateY(-2px); }
 .btn-ghost { background: transparent; color: var(--cream); border-color: rgba(250, 246, 237, .55); }
 .btn-ghost:hover { background: var(--cream); color: var(--pine-deep); transform: translateY(-2px); }
 .btn-ghost-dark { background: transparent; color: var(--pine-deep); border-color: var(--moss); }
@@ -174,7 +174,8 @@ h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 600; }
 .hero::after {
   content: ""; position: absolute; inset: 0;
   background:
-    linear-gradient(180deg, rgba(14,29,21,.55) 0%, rgba(14,29,21,.2) 40%, rgba(14,29,21,.82) 100%);
+    linear-gradient(180deg, rgba(14,29,21,.66) 0%, rgba(14,29,21,.10) 34%, rgba(14,29,21,.28) 56%, rgba(14,29,21,.86) 100%),
+    linear-gradient(90deg, rgba(14,29,21,.45) 0%, rgba(14,29,21,.18) 42%, rgba(14,29,21,.04) 72%);
 }
 .hero-inner { position: relative; z-index: 2; width: 100%; padding-bottom: clamp(4rem, 9vh, 7rem); }
 .hero-inner .eyebrow { color: var(--gold-soft); }
