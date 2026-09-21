@@ -176,7 +176,7 @@ h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 600; }
 .hero::after {
   content: ""; position: absolute; inset: 0;
   background:
-    linear-gradient(180deg, rgba(14,29,21,.66) 0%, rgba(14,29,21,.10) 34%, rgba(14,29,21,.28) 56%, rgba(14,29,21,.86) 100%),
+    linear-gradient(180deg, rgba(14,29,21,.78) 0%, rgba(14,29,21,.12) 34%, rgba(14,29,21,.28) 56%, rgba(14,29,21,.86) 100%),
     linear-gradient(90deg, rgba(14,29,21,.45) 0%, rgba(14,29,21,.18) 42%, rgba(14,29,21,.04) 72%);
 }
 .hero-inner { position: relative; z-index: 2; width: 100%; padding-bottom: clamp(4rem, 9vh, 7rem); }
