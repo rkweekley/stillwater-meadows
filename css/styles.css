@@ -282,7 +282,7 @@ h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 600; }
     linear-gradient(180deg, rgba(14,29,21,.85) 0%, rgba(14,29,21,.66) 45%, rgba(14,29,21,.78) 100%);
 }
 .band h2 { color: var(--white); text-shadow: 0 2px 6px rgba(14,29,21,.45); }
-.band .lede { color: rgba(250,246,237,.94); max-width: 56ch; margin-top: 1rem; text-shadow: 0 1px 4px rgba(14,29,21,.8); }
+.band .lede { color: rgba(255,255,255,.97); max-width: 56ch; margin-top: 1rem; text-shadow: 0 1px 4px rgba(14,29,21,.9), 0 0 14px rgba(14,29,21,.5); }
 .band .eyebrow { color: var(--gold-soft); text-shadow: 0 1px 3px rgba(14,29,21,.6); }
 .band .btn-ghost { text-shadow: none; }
 
