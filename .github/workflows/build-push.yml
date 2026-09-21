@@ -1,36 +1,61 @@
-name: Build & Push Stillwater image to GHCR
+name: Build, Push & Deploy
 
-# Manual trigger only (phased deployment: server deploy is verified first).
-# After merge to main, run this from Actions → "Run workflow" to publish
-# ghcr.io/rkweekley/stillwater-meadows:latest for server pulls.
+# Push to main → build multi-arch image → GHCR → auto-deploy on Mac Mini (pull + run).
+# Same flow as Tickflo / Village. Manual workflow_dispatch kept as backup.
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
-    inputs:
-      tag:
-        description: "Image tag (default: latest)"
-        required: false
-        default: latest
 
-permissions:
-  contents: read
-  packages: write
+env:
+  IMAGE_NAME: ghcr.io/rkweekley/stillwater-meadows
 
 jobs:
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-qemu-action@v3
+
       - uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: docker/build-push-action@v6
         with:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/rkweekley/stillwater-meadows:${{ inputs.tag }}
+          tags: ${{ env.IMAGE_NAME }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Deploy to Mac Mini (pull + run)
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.MAC_MINI_HOST }}
+          username: ${{ secrets.DEPLOY_USER_PROD }}
+          key: ${{ secrets.DEPLOY_SSH_KEY_PROD }}
+          script: |
+            set -e
+            export PATH="/usr/local/bin:$PATH"
+            docker pull ghcr.io/rkweekley/stillwater-meadows:latest
+            docker rm -f stillwater 2>/dev/null || true
+            docker run -d --name stillwater --network mac \
+              -p 127.0.0.1:5055:80 \
+              --restart unless-stopped \
+              ghcr.io/rkweekley/stillwater-meadows:latest
+            docker image prune -f
+            # health check from inside NPM's network context
+            code=$(docker exec nginx-proxy-manager sh -c \
+              "curl -s -o /dev/null -w '%{http_code}' http://stillwater:80/" || true)
+            echo "stillwater health: ${code}"
+            test "${code}" = "200"

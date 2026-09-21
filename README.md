@@ -34,18 +34,17 @@ Static marketing site for **Stillwater Meadows** — a wedding & private event v
 python3 -m http.server 8000   # serve repo root (index.html at /)
 ```
 
-## Deploy (Mac Mini, native build)
+## Deploy (GitHub Actions → GHCR → Mac Mini auto-pull)
 
-```bash
-rsync -avz --delete -e "ssh -o BatchMode=yes" ./ cyberal@69.133.124.51:docker/stillwater/
-ssh cyberal@69.133.124.51 \
-  'cd ~/docker/stillwater && docker build -t stillwater:latest . && \
-   docker rm -f stillwater; docker run -d --name stillwater --network mac \
-   -p 127.0.0.1:5000:5000 --restart unless-stopped stillwater:latest'
-```
+Push to `main` (or run the workflow manually) → Actions builds a multi-arch
+(amd64 + arm64) image → pushes `ghcr.io/rkweekley/stillwater-meadows:latest` →
+SSH-deploys to the Mac Mini: `docker pull` + recreate the `stillwater` container
+on the `mac` network, then health-checks it from inside NPM.
 
-NPM proxy host: `stillwater.cyberalsolutions.com` → `stillwater:5000` (HTTP, SSL forced).
-Wildcard DNS `*.cyberalsolutions.com` → 69.133.124.51 already exists.
+Repo secrets: `MAC_MINI_HOST`, `DEPLOY_USER_PROD`, `DEPLOY_SSH_KEY_PROD`.
+Package visibility is **public** (no token needed on the server to pull).
+
+Container: `--name stillwater --network mac -p 127.0.0.1:5055:80 --restart unless-stopped`
 
 ## Notes
 
