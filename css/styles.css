@@ -466,8 +466,6 @@ h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 600; }
       linear-gradient(90deg, rgba(14,29,21,.35) 0%, rgba(14,29,21,.15) 55%);
   }
   .hero-inner .eyebrow { font-size: .7rem; letter-spacing: .16em; }
-}
-@media (max-width: 400px) {
   .hero-inner .eyebrow::before { display: none; }
 }
 
