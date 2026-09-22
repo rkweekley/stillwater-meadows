@@ -465,8 +465,14 @@ h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 600; }
       linear-gradient(180deg, rgba(14,29,21,.85) 0%, rgba(14,29,21,.45) 38%, rgba(14,29,21,.55) 62%, rgba(14,29,21,.92) 100%),
       linear-gradient(90deg, rgba(14,29,21,.35) 0%, rgba(14,29,21,.15) 55%);
   }
+  .hero-inner {
+    padding-top: 5.4rem;
+    padding-bottom: 5.5rem;
+  }
   .hero-inner .eyebrow { font-size: .7rem; letter-spacing: .16em; }
   .hero-inner .eyebrow::before { display: none; }
+  .hero-inner h1 { max-width: 100%; margin-top: 1.35rem; }
+  .hero-cta .btn { width: 100%; text-align: center; }
 }
 
 /* ---------- Footer ---------- */
