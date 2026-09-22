@@ -474,6 +474,9 @@ h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 600; }
   .hero-inner h1 { max-width: 100%; margin-top: 1.35rem; }
   .hero-cta .btn { width: 100%; text-align: center; }
 }
+@media (max-width: 400px) {
+  .hero-inner .eyebrow { font-size: .64rem; letter-spacing: .12em; }
+}
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--pine-ink); color: rgba(250,246,237,.82); padding: clamp(3.5rem, 7vw, 5.5rem) 0 2rem; }
